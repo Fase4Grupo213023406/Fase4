@@ -1,6 +1,7 @@
 # IMPORTACIONES: Módulos funcionales desarrollados para el equipo
 from cliente import Cliente
 from servicio import ReservaSala, AlquilerEquipo, AsesoriaEspecializada
+from logger import registrar_log
 
 # --- NOTA ----
 # Falta importar el módulo reserva y logger para la integración final.
