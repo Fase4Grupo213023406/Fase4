@@ -1,13 +1,47 @@
-class Reserva:
-    # Clase Reserva: Vincula Cliente y Servicio gestionando su estado
-    def __init__(self, cliente, servicio, duracion, costo):
-        self.cliente = cliente
-        self.servicio = servicio
-        self.duracion = duracion
-        self.costo = costo
-        self.estado = "Confirmada" 
+# aca se debe agregar # Importar excepción personalizada para manejo de errores
 
+
+
+class Reserva:
+
+    def __init__(self, cliente, servicio, duracion):
+
+        try:
+
+            # Validación
+            if duracion <= 0:
+
+                raise ReservaError(
+                    "La duración debe ser mayor a cero."
+                )
+
+            self.cliente = cliente
+            self.servicio = servicio
+            self.duracion = duracion
+
+            # Calcular costo automáticamente
+            self.costo = servicio.calcular_costo(duracion)
+
+            self.estado = "Confirmada"
+
+        except ReservaError as e:
+
+            raise ReservaError(
+                f"Error al crear reserva: {e}"
+            )
+
+    # Método para cancelar
+    def cancelar_reserva(self):
+
+        self.estado = "Cancelada"
+
+    # Mostrar información
     def __str__(self):
-        return f"Servicio: {self.servicio.nombre} | Duración: {self.duracion}h | Total: ${self.costo:.2f}"
-        # este aparato deben de completarlo, solo es una base aunque no esta bien desarrollada, solo para complementar por eso no
-        # lo importe, sin antes de que se complementa la seccion. 
+
+        return (
+            f"\nCliente: {self.cliente.nombre}"
+            f"\nServicio: {self.servicio.nombre}"
+            f"\nDuración: {self.duracion} horas"
+            f"\nCosto Total: ${self.costo}"
+            f"\nEstado: {self.estado}"
+        )

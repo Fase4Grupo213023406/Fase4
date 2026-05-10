@@ -1,11 +1,10 @@
 # IMPORTACIONES: Módulos funcionales desarrollados para el equipo
 from cliente import Cliente
 from servicio import ReservaSala, AlquilerEquipo, AsesoriaEspecializada
+from reserva import Reserva
 from logger import registrar_log
 
-# --- NOTA ----
-# Falta importar el módulo reserva y logger para la integración final.
-# Ejemplo: from logger import registrar_log
+
 
 # LISTAS INTERNAS: Almacenamiento volátil obligatorio
 lista_clientes = []
@@ -29,9 +28,12 @@ def registrar_usuario():
 
 # si el ususario  dijita una informacion o formanto int o srt  mal, se guarda el reporte y no deja avanzar.
     except ValueError as e:
-        #excepciones .
-        print(f"Error detectado en los datos: {e}")
-        return None
+
+         registrar_log(str(e))  #  se guarda el error en el archivo
+
+         print(f"Error detectado en los datos: {e}")
+
+         return None
 
 def adquirir_servicio():
     # Muestra las opciones de servicios funcionales disponibles 
@@ -57,18 +59,39 @@ def menu_principal():
              # importante, en esta seccion deben de completar la seccion de reserva, servicios, y el menu y ajustarlo para que en la seccion de " ver mi informcion"
             # puedoa mostrar los servicios adquiridos, y costos.
             opcion = input("Seleccione una opción: ")
-
+            
             if opcion == "1":
                 servicio = adquirir_servicio()
+
                 if servicio:
-                    print(f"Seleccionaste: {servicio.nombre}. (Compañeros: Falta calcular costo)")
+
+        # Pedir duración de la reserva
+                  duracion = int(input("Ingrese duración en horas: "))
+
+        # Crear reserva
+                  reserva = Reserva(cliente_actual, servicio, duracion)
+
+        # Guardar reserva en lista
+                  lista_reservas.append(reserva)
+
+        # Mostrar información de la reserva
+                  print(reserva)
                 else:
-                    print("Servicio no válido.")
+                 print("Servicio no válido.")
+
+
             
             elif opcion == "2":
-                # Muestra los datos capturados en el registro
+
                 print("\n INFORMACIÓN DE CUENTA ")
-                for c in lista_clientes: print(c)
+
+                for c in lista_clientes:
+                   print(c)
+
+                print("\n RESERVAS REALIZADAS ")
+
+                for r in lista_reservas:
+                   print(r)
 
             elif opcion == "3":
                 print("Saliendo del sistema...")
@@ -84,6 +107,84 @@ def menu_principal():
             # Bloque obligatorio para flujo constante.
             print("Operación finalizada.")
 
+
+def pruebas_automaticas():
+
+    print("\n--- PRUEBAS AUTOMÁTICAS ---")
+
+    # PRUEBA 1
+    try:
+
+        cliente1 = Cliente(
+            1,
+            "Ana",
+            "ana@gmail.com",
+            "1234567"
+        )
+
+        servicio1 = ReservaSala(
+            "Sala Juntas",
+            100
+        )
+
+        reserva1 = Reserva(
+            cliente1,
+            servicio1,
+            2
+        )
+
+        print(reserva1)
+
+    except Exception as e:
+
+        registrar_log(str(e))
+
+        print(f"Error: {e}")
+
+    # PRUEBA 2 (ERROR)
+    try:
+
+        cliente2 = Cliente(
+            -1,
+            "Pedro",
+            "pedrogmail.com",
+            "12"
+        )
+
+    except Exception as e:
+
+        registrar_log(str(e))
+
+        print(f"Error: {e}")
+
+    # PRUEBA 3
+    try:
+
+        cliente3 = Cliente(
+            3,
+            "Laura",
+            "laura@gmail.com",
+            "7654321"
+        )
+
+        servicio3 = AlquilerEquipo(
+            "Laptop",
+            50
+        )
+
+        reserva3 = Reserva(
+            cliente3,
+            servicio3,
+            5
+        )
+
+        print(reserva3)
+
+    except Exception as e:
+
+        registrar_log(str(e))
+
+        print(f"Error: {e}")
 if __name__ == "__main__":
     print("Sistema Software FJ Iniciado.")
 
@@ -93,8 +194,8 @@ if __name__ == "__main__":
     #  el usuario se registró bien, llamamos al menú
     if cliente_actual:
         menu_principal()
+        pruebas_automaticas()
 #--------------------------------------------------------------------------------
-
 
 # #### ###############------------IMPORTANTE---------------------- 
 # --- PLAN DE ACCIÓN PARA EL GRUPO (Sugerencias) ---

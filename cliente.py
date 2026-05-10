@@ -1,27 +1,34 @@
-# Pedir todos los datos al cliente. 
+# Pedir todos los datos al cliente.
 class Cliente:
 
-    # Clase que representa a un cliente. .
+    # Clase que representa a un cliente.
     def __init__(self, id_cliente, nombre, correo, telefono):
-        # La asignación llama a los setters para validar datos desde el inicio.
+
+        # La asignación llama a los setters
         self.id_cliente = id_cliente
         self.nombre = nombre
         self.correo = correo
         self.telefono = telefono
 
-    # @property para asegurar que los datos ingresados sean válidos
+    # ---------------- ID CLIENTE ----------------
+
     @property
     def id_cliente(self):
-        return self._id_cliente # Atributo privado protegido.
+        return self._id_cliente
 
     @id_cliente.setter
     def id_cliente(self, valor):
-        # Validación: El ID debe ser un número entero positivo.
+
+        # Validar ID positivo
         if not isinstance(valor, int) or valor <= 0:
-            # SUGERENCIA PARA COMPAÑERO DE LOGGER:
-            # Aquí se debe llamar a la función de registro de errores.
-            raise ValueError("El ID debe ser un número entero positivo.")
+
+            raise ValueError(
+                "El ID debe ser un número entero positivo."
+            )
+
         self._id_cliente = valor
+
+    # ---------------- NOMBRE ----------------
 
     @property
     def nombre(self):
@@ -29,16 +36,57 @@ class Cliente:
 
     @nombre.setter
     def nombre(self, valor):
-        # Validación: No permitir nombres vacíos.
+
+        # No permitir nombres vacíos
         if not valor or valor.strip() == "":
-            raise ValueError("El nombre no puede estar vacío.")
+
+            raise ValueError(
+                "El nombre no puede estar vacío."
+            )
+
         self._nombre = valor
 
-    # ---EQUIPO ----
-    # Compañeros, podrían implementar validaciones adicionales aquí:
-    # 1. Validar que el correo contenga un '@' y un '.'.
-    # 2. Asegurar que el teléfono tenga una longitud mínima de dígitos.
-    # si desean modifacar algo, cambiar la logica, mejorar, pueden hacerlo, pero que no afecte la estructura geneal del proyecto.
+    # ---------------- CORREO ----------------
+
+    @property
+    def correo(self):
+        return self._correo
+
+    @correo.setter
+    def correo(self, valor):
+
+        # Validar correo
+        if "@" not in valor or "." not in valor:
+
+            raise ValueError(
+                "El correo electrónico no es válido."
+            )
+
+        self._correo = valor
+
+    # ---------------- TELÉFONO ----------------
+
+    @property
+    def telefono(self):
+        return self._telefono
+
+    @telefono.setter
+    def telefono(self, valor):
+
+        # Validar longitud del teléfono
+        if len(valor) < 7:
+
+            raise ValueError(
+                "El número de teléfono no es válido."
+            )
+
+        self._telefono = valor
+
+    # ---------------- MOSTRAR INFORMACIÓN ----------------
 
     def __str__(self):
-        return f"Cliente: {self.nombre} (ID: {self.id_cliente})"
+
+        return (
+            f"Cliente: {self.nombre} "
+            f"(ID: {self.id_cliente})"
+        )
