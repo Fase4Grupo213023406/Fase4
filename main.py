@@ -16,12 +16,14 @@ def registrar_usuario():
     try:
 
         print("\n ___REGISTRO DE CLIENTE___")
+        # #Nidia Mena: Se agregan ejemplos de formato para guiar al usuario
+        print("(Siga el formato de los ejemplos para evitar errores)")
 
         # Capturamos todos los datos.
-        id_c = int(input("Ingrese ID (Solo números): "))
-        nom = input("Ingrese nombre completo: ")
-        correo = input("Ingrese correo electrónico: ")
-        tel = input("Ingrese número de teléfono: ")
+        id_c = int(input("Ingrese ID (Ej: 1010): "))
+        nom = input("Ingrese nombre completo (Ej: Carlos Mora): ")
+        correo = input("Ingrese correo electrónico (Ej: carlos.mora@gmail.com): ")
+        tel = input("Ingrese número de teléfono (Ej: 3028596589): ")
 
         # Creamos el objeto con datos reales.
         # Esto dispara las validaciones en cliente.py
@@ -36,7 +38,7 @@ def registrar_usuario():
 
     # si el usuario dijita una informacion o formato int o str mal,
     # se guarda el reporte y no deja avanzar.
-    except ValueError as e:
+    except (ValueError, Exception) as e:
 
         registrar_log(str(e))  # se guarda el error en el archivo
 
@@ -52,6 +54,7 @@ def adquirir_servicio():
 
     # PUEDES AJUSTAR ESTA PARTE,
     # ES SOLO UN EJEMPLO PARA QUE EL MENU FUNCIONE
+    # Nidia Mena: Ajuste de precios y visualización para que coincida con la guía.
     print("1. Sala ($100/h)")
     print("2. Equipo ($50/h)")
     print("3. Asesoría ($200/h)")
@@ -59,19 +62,48 @@ def adquirir_servicio():
     op = input("Seleccione una opción: ")
 
     # Se retornan objetos de las clases especializadas.
-    if op == "1":
+    # Nidia Mena: Corrección de la opción 2 para que retorne objetos funcionales
+    # que permitan el cálculo de costos y el manejo de excepciones.
+    try:
+        if op == "1":
+            return ReservaSala("Sala Juntas", 100)
+        elif op == "2":
+            return AlquilerEquipo("Laptop Pro", 50)
+        elif op == "3":
+            return AsesoriaEspecializada("Asesoría IT", 200)
+        else:
+            raise ServicioError("Opción no válida.")
+    except ServicioError as e:
+        registrar_log(str(e))
+        print(f"Error: {e}")
+        return None
 
-        return ReservaSala("Sala Juntas", 100)
 
-    elif op == "2":
-
-        return AlquilerEquipo("Laptop Pro", 50)
-
-    elif op == "3":
-
-        return AsesoriaEspecializada("Asesoría IT", 200)
-
-    return None
+# Nidia Mena: Función para requisito final
+# Ejecuta 10 operaciones automáticas para demostrar robustez.
+def ejecutar_pruebas_robustez():
+    print("\n===== PRUEBAS AUTOMÁTICAS (10 OPERACIONES) =====")
+    pruebas = [
+        (101, "Elizabeth", "eliza@g.com", "3001234567", "sala", 2),
+        (102, "Luis", "luis@g.com", "3107654321", "equipo", 3),
+        (103, "Alejo", "alejo@g.com", "3203457623", "asesoria", 1),
+        (104, "Thomas", "thom@g.com", "3159873253", "sala", 4),
+        (105, "Marta", "marta@g.com", "3118345092", "equipo", 2),
+        (-20, "ErrorID", "err@g.com", "123", "sala", 2), 
+        (0, "", "correo", "1", "equipo", 3),             
+        (106, "Juan", "juan@", "abc", "asesoria", 0),    
+        ("A", "Karen", "k@g.com", "1234567", "sala", 2), 
+        (99, "Incompleto", "", "", "equipo", 5)          
+    ]
+    for d in pruebas:
+        try:
+            c = Cliente(d[0], d[1], d[2], d[3])
+            s = ReservaSala("Prueba", 100) if d[4]=="sala" else AlquilerEquipo("Prueba", 50)
+            res = Reserva(c, s, d[5])
+            print(f"Éxito: Reserva para {d[1]} Creada.")
+        except Exception as e:
+            registrar_log(f"Prueba Automática: {e}")
+            print(f"Fallo Controlado: {e}")
 
 
 def menu_principal(cliente_actual):
@@ -84,7 +116,8 @@ def menu_principal(cliente_actual):
             print("\n- MENÚ DE GESTIÓN SOFTWARE FJ -")
             print("1. Adquirir Servicio")
             print("2. Ver mi Información")
-            print("3. Salir")
+            print("3. Ejecutar Robustez (10 Op. Automáticas)") # Nidia Mena: Nueva opción
+            print("4. Salir")
 
             # importante, en esta seccion deben de completar
             # la seccion de reserva, servicios, y el menu
@@ -106,7 +139,7 @@ def menu_principal(cliente_actual):
 
                     # Pedir duración de la reserva
                     duracion = int(
-                        input("Ingrese duración en horas: ")
+                        input("Ingrese duración en horas (Ej: 2): ")
                     )
 
                     # Crear reserva
@@ -154,10 +187,17 @@ def menu_principal(cliente_actual):
                         print(r)
 
             # ---------------------------------------------------
-            # OPCIÓN 3  SALIR
+            # OPCIÓN 3  ROBUSTEZ (Añadido por Nidia Mena)
             # ---------------------------------------------------
 
             elif opcion == "3":
+                ejecutar_pruebas_robustez()
+
+            # ---------------------------------------------------
+            # OPCIÓN 4  SALIR
+            # ---------------------------------------------------
+
+            elif opcion == "4":
 
                 print("Saliendo del sistema...")
 
@@ -182,84 +222,6 @@ def menu_principal(cliente_actual):
 
 
 # ---------------------------------------------------
-# PRUEBAS AUTOMÁTICAS
-# ---------------------------------------------------
-
-def pruebas_automaticas():
-
-    print("\n===== PRUEBAS AUTOMÁTICAS =====")
-
-    pruebas = [
-
-        # PRUEBAS CORRECTAS
-        (1, "Elizabeth", "elizabeth@gmail.com", "1234567", "sala", 2),
-        (2, "Luis", "luis@gmail.com", "7654321", "equipo", 3),
-        (3, "Alejandro", "alejo16@gmail.com", "3457623", "asesoria", 1),
-        (4, "Thomas", "thomas@gmail.com", "9873253", "sala", 4),
-        (5, "Marta", "marta@gmail.com", "8345092", "equipo", 2),
-
-        # PRUEBAS INCORRECTAS
-        (-1, "Pedro", "pedrogmail.com", "12", "sala", 2),
-        (0, "", "correo", "1", "equipo", 3),
-        (-5, "Juan", "juan@", "abc", "asesoria", 1),
-        ("a", "Karen", "kare.com", "", "sala", 2),
-        (10, "", "", "", "equipo", 5)
-    ]
-
-    for dato in pruebas:
-
-        try:
-
-            id_c, nombre, correo, telefono, tipo, horas = dato
-
-            # Crear cliente
-            cliente = Cliente(
-                id_c,
-                nombre,
-                correo,
-                telefono
-            )
-
-            # Crear servicio
-            if tipo == "sala":
-
-                servicio = ReservaSala(
-                    "Sala Juntas",
-                    100
-                )
-
-            elif tipo == "equipo":
-
-                servicio = AlquilerEquipo(
-                    "Laptop",
-                    50
-                )
-
-            else:
-
-                servicio = AsesoriaEspecializada(
-                    "Asesoría IT",
-                    200
-                )
-
-            # Crear reserva
-            reserva = Reserva(
-                cliente,
-                servicio,
-                horas
-            )
-
-            print("\nReserva exitosa:")
-            print(reserva)
-
-        except Exception as e:
-
-            registrar_log(str(e))
-
-            print(f"\nError detectado: {e}")
-
-
-# ---------------------------------------------------
 # INICIO DEL SISTEMA
 # ---------------------------------------------------
 
@@ -267,16 +229,18 @@ if __name__ == "__main__":
 
     print("Sistema Software FJ Iniciado.")
 
-    # Capturar los datos del usuario primero.
-    cliente_actual = registrar_usuario()
+    # Nidia Mena: Bucle para que no se cierre si hay error en registro
+    while True:
+        # Capturar los datos del usuario primero.
+        cliente_actual = registrar_usuario()
 
-    # el usuario se registró bien, llamamos al menú
-    if cliente_actual:
+        # el usuario se registró bien, llamamos al menú
+        if cliente_actual:
+            menu_principal(cliente_actual)
+            break
+        else:
+            print("\n>>> Registro fallido. Reintentando por seguridad...")
 
-        menu_principal(cliente_actual)
-
-    # Ejecutar pruebas automáticas
-    pruebas_automaticas()
 #--------------------------------------------------------------------------------
 
 # #### ###############------------IMPORTANTE---------------------- 
