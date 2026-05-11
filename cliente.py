@@ -1,3 +1,5 @@
+from excepciones import ClienteError
+
 # Pedir todos los datos al cliente.
 class Cliente:
 
@@ -35,6 +37,7 @@ class Cliente:
         return self._nombre
 
     @nombre.setter
+    
     def nombre(self, valor):
 
         # No permitir nombres vacíos

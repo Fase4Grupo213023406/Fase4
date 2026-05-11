@@ -1,2 +1,59 @@
 [2026-05-09 18:38:38.635074] El ID debe ser un número entero positivo.
 [2026-05-09 18:55:51.256364] El ID debe ser un número entero positivo.
+[2026-05-10 19:16:46.146288] El ID debe ser un número entero positivo.
+[2026-05-10 19:24:00.284447] Reserva.__init__() takes 4 positional arguments but 5 were given
+[2026-05-10 19:24:00.285903] Reserva.__init__() takes 4 positional arguments but 5 were given
+[2026-05-10 19:24:00.287174] Reserva.__init__() takes 4 positional arguments but 5 were given
+[2026-05-10 19:24:00.288333] Reserva.__init__() takes 4 positional arguments but 5 were given
+[2026-05-10 19:24:00.290351] Reserva.__init__() takes 4 positional arguments but 5 were given
+[2026-05-10 19:24:00.291373] El ID debe ser un número entero positivo.
+[2026-05-10 19:24:00.292656] El ID debe ser un número entero positivo.
+[2026-05-10 19:24:00.293627] El ID debe ser un número entero positivo.
+[2026-05-10 19:24:00.296884] El ID debe ser un número entero positivo.
+[2026-05-10 19:24:00.298466] El nombre no puede estar vacío.
+[2026-05-10 19:27:07.232274] Reserva.__init__() takes 4 positional arguments but 5 were given
+[2026-05-10 19:27:07.233395] Reserva.__init__() takes 4 positional arguments but 5 were given
+[2026-05-10 19:27:07.234538] Reserva.__init__() takes 4 positional arguments but 5 were given
+[2026-05-10 19:27:07.235570] Reserva.__init__() takes 4 positional arguments but 5 were given
+[2026-05-10 19:27:07.237031] Reserva.__init__() takes 4 positional arguments but 5 were given
+[2026-05-10 19:27:07.238219] El ID debe ser un número entero positivo.
+[2026-05-10 19:27:07.239655] El ID debe ser un número entero positivo.
+[2026-05-10 19:27:07.240936] El ID debe ser un número entero positivo.
+[2026-05-10 19:27:07.242383] El ID debe ser un número entero positivo.
+[2026-05-10 19:27:07.243485] El nombre no puede estar vacío.
+[2026-05-10 19:43:37.823284] invalid literal for int() with base 10: '& C:/Users/Lenovo/AppData/Local/Programs/Python/Python314/python.exe c:/Users/Lenovo/Desktop/Fase4/main.py'
+[2026-05-10 19:44:51.361602] El ID debe ser un número entero positivo.
+[2026-05-10 19:44:51.363596] El ID debe ser un número entero positivo.
+[2026-05-10 19:44:51.365252] El ID debe ser un número entero positivo.
+[2026-05-10 19:44:51.366947] El ID debe ser un número entero positivo.
+[2026-05-10 19:44:51.368139] El nombre no puede estar vacío.
+[2026-05-10 19:49:33.010902] El ID debe ser un número entero positivo.
+[2026-05-10 19:49:33.011964] El ID debe ser un número entero positivo.
+[2026-05-10 19:49:33.012938] El ID debe ser un número entero positivo.
+[2026-05-10 19:49:33.013875] El ID debe ser un número entero positivo.
+[2026-05-10 19:49:33.015330] El nombre no puede estar vacío.
+[2026-05-10 20:05:16.414598] El ID debe ser un número entero positivo.
+[2026-05-10 20:05:16.415619] El ID debe ser un número entero positivo.
+[2026-05-10 20:05:16.416599] El ID debe ser un número entero positivo.
+[2026-05-10 20:05:16.417501] El ID debe ser un número entero positivo.
+[2026-05-10 20:05:16.418959] El nombre no puede estar vacío.
+[2026-05-10 20:09:06.041295] El ID debe ser un número entero positivo.
+[2026-05-10 20:09:06.042672] El ID debe ser un número entero positivo.
+[2026-05-10 20:09:06.043793] El ID debe ser un número entero positivo.
+[2026-05-10 20:09:06.045242] El ID debe ser un número entero positivo.
+[2026-05-10 20:09:06.046580] El nombre no puede estar vacío.
+[2026-05-10 20:13:56.686776] El ID debe ser un número entero positivo.
+[2026-05-10 20:13:56.687889] El ID debe ser un número entero positivo.
+[2026-05-10 20:13:56.688891] El ID debe ser un número entero positivo.
+[2026-05-10 20:13:56.689804] El ID debe ser un número entero positivo.
+[2026-05-10 20:13:56.691161] El nombre no puede estar vacío.
+[2026-05-10 20:24:23.780557] El ID debe ser un número entero positivo.
+[2026-05-10 20:24:23.782162] El ID debe ser un número entero positivo.
+[2026-05-10 20:24:23.783250] El ID debe ser un número entero positivo.
+[2026-05-10 20:24:23.784997] El ID debe ser un número entero positivo.
+[2026-05-10 20:24:23.786239] El nombre no puede estar vacío.
+[2026-05-10 20:26:40.496586] El ID debe ser un número entero positivo.
+[2026-05-10 20:26:40.497657] El ID debe ser un número entero positivo.
+[2026-05-10 20:26:40.498705] El ID debe ser un número entero positivo.
+[2026-05-10 20:26:40.500153] El ID debe ser un número entero positivo.
+[2026-05-10 20:26:40.501547] El nombre no puede estar vacío.

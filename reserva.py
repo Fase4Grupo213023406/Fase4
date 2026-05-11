@@ -1,5 +1,5 @@
 # aca se debe agregar # Importar excepción personalizada para manejo de errores
-
+from excepciones import ReservaError
 
 
 class Reserva:
